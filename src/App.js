@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'; 
+import MainPage from './Components/MainPage';
+import Issue from './Components/Issue'
+var ReactRouter = require('react-router-dom');
+var Router = ReactRouter.BrowserRouter;
+var Route = ReactRouter.Route;
+var Switch = ReactRouter.Switch;
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+      return(
+        <Router>
+          <div className='container'>
+            <Switch>
+              <Route exact path='/' component={MainPage} />
+              <Route exact path='/Issue/:id' component={Issue} />
+              <Route render={function () {
+                return <p>Not Found Bruh</p>
+              }} />
+            </Switch>
+          </div>
+        </Router> 
+      )}
 }
 
 export default App;
